@@ -1,0 +1,18 @@
+<%= render 'shared/title', title: "Community Document" %>
+
+<div class='row'>
+	<%= link_to "Create New Document Category", new_doc_type_path, class: 'btn btn-success'%>
+</div>
+<br/>
+<div class='row'>
+<% @doc_types.each do |dtype| %>
+	<div class='well span7 inline'>
+		<%= link_to dtype.name, doc_type_path(dtype), class: 'lead'%>
+		
+		<% if current_user.admin? %>
+			<%= link_to "Edit", edit_doc_type_path(dtype) %>
+			<%= link_to 'Destroy',  dtype,  method: :delete, data: { confirm: 'Are you sure?' } %>
+		<% end %>
+	</div>
+<% end %> 
+</div>

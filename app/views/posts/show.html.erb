@@ -1,11 +1,5 @@
-<p>
-	<%= render @post.categories %>
 
-</p>
-
-	<%= render 'shared/content_title', title: @post.title %>
-	<h6>URL: <%= link_to @post.url, fix_url(@post.url) %></h6>
-
+<%= render 'shared/title', title: @post.title %>
 <p><%= @post.description %></p>
 <p>
 	<span class="quiet">posted by </span><%= @post.user.username %>

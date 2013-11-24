@@ -1,0 +1,18 @@
+<%= render 'shared/title', title: "Community Forum" %>
+
+<div class='row'>
+	<%= link_to "Create New Category", new_category_path, class: 'btn btn-success'%>
+</div>
+<br/>
+<div class='row'>
+<% @categories.each do |cat| %>
+	<div class='well span7 inline'>
+		<%= link_to cat.name, category_path(cat), class: 'lead'%>
+		
+		<% if current_user.admin? %>
+			<%= link_to "Edit Categories", edit_category_path(cat) %>
+			<%= link_to 'Destroy',  cat,  method: :delete, data: { confirm: 'Are you sure?' } %>
+		<% end %>
+	</div>
+<% end %> 
+</div>

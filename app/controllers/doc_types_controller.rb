@@ -1,26 +1,27 @@
-class CategoriesController < ApplicationController
+class DocTypesController < ApplicationController
 	before_action :require_user, only: [:new, :create]
 	before_action :find_category, only: [:show, :edit, :update, :destroy]
 	before_action :require_user, except: [:show, :index, :new, :create]
   	before_action :require_creator, only: [:edit, :update, :destroy]
 	
 	def index
-		@categories = Category.all
+		@doc_types = DocType.all
 	end
 	def show
-		@category = Category.find(params[:id])
+		@doc_type = DocType.find(params[:id])
+		@docs = @doc_type.docs.all
 	end
 
 	def new
-		@category = Category.new
+		@doc_type = DocType.new
 	end
 
 	def create
-		@category = Category.new(category_params)
+		@doc_type = DocType.new(doc_type_params)
 
-		if @category.save
+		if @doc_type.save
 			flash[:notice] = "The category was created successfully"
-			redirect_to categories_path
+			redirect_to doc_types_path
 		else
 			render :new
 		end
@@ -29,27 +30,25 @@ class CategoriesController < ApplicationController
 	def edit; end
 
 	def update 
-		if @category.update(category_params)
+		if @doc_type.update(doc_type_params)
 			flash[:notice] = "The category was updated successfully"
-			redirect_to root_path
+			redirect_to doc_types_path
 		else
 			render :edit
 		end
 	end
 
 	def destroy
-		@category.destroy
+		@doc_type.destroy
 		flash[:notice] = "The category was deleted successfully"
-		redirect_to categories_path
-
+		redirect_to doc_types_path
 	end
 
-	def category_params
-		params.require(:category).permit(:name)
+	def doc_type_params
+		params.require(:doc_type).permit(:name)
 	end
 
 	def find_category
-		@category = Category.find(params[:id])
-	end
-
+		@doc_type = DocType.find(params[:id])
+	end 
 end

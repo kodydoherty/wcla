@@ -9,11 +9,14 @@ PostitTemplate::Application.routes.draw do
 
   resources :users
   resources :posts do
-  	resources :comments do
+  	resources :comments, only: [:create] do
 
   	end
   end
 
-  resources :categories, only: [:show, :new, :create]
+  resources :categories
+
+  resources :docs
+  resources :doc_types
 
 end

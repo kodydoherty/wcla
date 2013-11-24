@@ -1,0 +1,8 @@
+<%= render 'shared/error', obj: @doc_type %>
+<%= form_for @doc_type do |dtype| %>
+	<div class='control-group'>
+		<%= dtype.label :name %>
+		<%= dtype.text_field :name %>
+	</div>
+	<%= dtype.submit(@doc_type.new_record? ? "Create Document Category" : "Update Document Category"  , class: 'btn btn-success' )%>
+<% end %>

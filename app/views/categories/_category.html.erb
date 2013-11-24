@@ -1,0 +1,8 @@
+<%= render 'shared/error', obj: @category %>
+<%= form_for @category do |cat| %>
+	<div class='control-group'>
+		<%= cat.label :name %>
+		<%= cat.text_field :name %>
+	</div>
+	<%= cat.submit(@category.new_record? ? "Create Category" : "Update Category"  , class: 'btn btn-success' )%>
+<% end %>

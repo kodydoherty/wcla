@@ -1,0 +1,26 @@
+<div class="row">
+	<div class="span8 well">
+		<h4><%= link_to(post.title, post_path(post)) %></h4>
+		<p><%= post.description %></p>
+		
+		<p>
+			<span class="quiet">posted by </span><%= post.user.username %>
+			<small>at <%= display_datetime(post.created_at) %></small>
+		</p>
+
+		<p>
+			<small>
+
+				<span>
+					<%= link_to("#{post.comments.size} comments", post_path(post)) %>
+				</span>		
+
+			</small>
+		</p>
+		<% if logged_in? %>
+			<%= link_to("Edit", edit_post_path(post)) %>
+			<%= link_to 'Destroy',  post,  method: :delete, data: { confirm: 'Are you sure?' } %>
+		<% end %>
+
+	</div>
+</div>

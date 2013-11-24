@@ -1,15 +1,15 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :vote]
-  before_action :require_user, except: [:show, :index]
-  before_action :require_creator, only: [:edit, :update]
+  before_action :require_user, except: [:show, :index, :new, :create]
+  before_action :require_creator, only: [:edit, :update, :destroy]
 
   def index
-  	@posts = Post.all.sort_by{|x| x.total_votes}.reverse
+  	@posts = Post.all.sort
   end
 
   def show 
 
-    @comments = @post.comments.all.sort_by{|x| x.total_votes}.reverse
+    @comments = @post.comments.all.sort
     @comment = Comment.new
   end
   def new 
@@ -63,7 +63,7 @@ class PostsController < ApplicationController
   private
 
   def set_post
-    @post = Post.find_by(slug: params[:id])
+    @post = Post.find(params[:id])
   end
   def require_creator
     access_denied unless logged_in? && (current_user == @post.user || current_user.admin?)

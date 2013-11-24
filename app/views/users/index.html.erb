@@ -4,7 +4,7 @@
 <% @users.each do |user| %>
 	<div class='well'>
 		<div class="inline">
-			<%= link_to "#{user.first_name.titleize} #{user.last_name.titleize}", user_path(user) %>
+			<%= link_to "#{user.first_name.titleize} #{user.last_name.titleize}", user_path(user), class: 'lead'%>
 			<%= user.unit %>
 			<%= link_to 'Edit', edit_user_path(user) %>
 			<% if current_user.admin? %>
