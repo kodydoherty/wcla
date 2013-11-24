@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+before_action :require_user, only: [:doc, :sale]
+	def home; end
 
 	def new; end
 

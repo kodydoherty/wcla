@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
 	before_action :require_user, only: [:new, :create]
 	before_action :find_category, only: [:show, :edit, :update, :destroy]
-	before_action :require_user, except: [:show, :index, :new, :create]
+	before_action :require_user, only: [:show, :index, :new, :create]
   	before_action :require_creator, only: [:edit, :update, :destroy]
 	
 	def index

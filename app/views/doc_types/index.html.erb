@@ -9,7 +9,7 @@
 	<div class='well span7 inline'>
 		<%= link_to dtype.name, doc_type_path(dtype), class: 'lead'%>
 		
-		<% if current_user.admin? %>
+		<% if logged_in? and current_user.admin?  %>
 			<%= link_to "Edit", edit_doc_type_path(dtype) %>
 			<%= link_to 'Destroy',  dtype,  method: :delete, data: { confirm: 'Are you sure?' } %>
 		<% end %>

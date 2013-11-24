@@ -9,7 +9,7 @@
 	<div class='well span7 inline'>
 		<%= link_to cat.name, category_path(cat), class: 'lead'%>
 		
-		<% if current_user.admin? %>
+		<% if logged_in? and current_user.admin?  %>
 			<%= link_to "Edit Categories", edit_category_path(cat) %>
 			<%= link_to 'Destroy',  cat,  method: :delete, data: { confirm: 'Are you sure?' } %>
 		<% end %>
