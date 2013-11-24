@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
 		presence: true, 
 		on: :create,
 		length: { minimum: 8}
+	validates :unit,
+		presence: true, 
+		on: :create,
+		length: { minimum: 4}
 
 	def admin?
 		role == 'admin'
