@@ -1,9 +1,8 @@
 class DocTypesController < ApplicationController
-	before_action :require_user, only: [:new, :create]
 	before_action :find_category, only: [:show, :edit, :update, :destroy]
-	before_action :require_user, only: [:show, :index, :new, :create]
-  	before_action :require_creator, only: [:edit, :update, :destroy]
-	
+	before_action :require_user, only: [:show, :index]
+	before_action :require_admin, except: [:index, :show] 
+
 	def index
 		@doc_types = DocType.all
 	end

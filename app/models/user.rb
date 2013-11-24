@@ -6,11 +6,9 @@ class User < ActiveRecord::Base
 	has_secure_password validations: false
 
 	validates :first_name, 
-		presence: true,
-		uniqueness: true
+		presence: true
 	validates :last_name, 
-		presence: true,
-		uniqueness: true
+		presence: true
 	validates :username, 
 		presence: true,
 		uniqueness: true

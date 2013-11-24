@@ -1,7 +1,9 @@
 <%= render 'shared/title', title: "Community Document" %>
 
 <div class='row'>
+<% if logged_in? and current_user.admin?  %>
 	<%= link_to "Create New Document Category", new_doc_type_path, class: 'btn btn-success'%>
+<% end %>
 </div>
 <br/>
 <div class='row'>

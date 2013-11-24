@@ -1,7 +1,7 @@
 class DocsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update]
-  before_action :require_user, except: [:show, :index, :new, :create]
-  before_action :require_creator, only: [ :edit, :update, :destroy]
+  before_action :require_user, only: [:show, :index]
+  before_action :require_admin, except: [:index, :show] 
 
   def index
   	@docs = Doc.all.sort

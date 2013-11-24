@@ -1,5 +1,4 @@
 class CategoriesController < ApplicationController
-	before_action :require_user, only: [:new, :create]
 	before_action :find_category, only: [:show, :edit, :update, :destroy]
 	before_action :require_user, only: [:show, :index, :new, :create]
   	before_action :require_creator, only: [:edit, :update, :destroy]
@@ -51,5 +50,8 @@ class CategoriesController < ApplicationController
 	def find_category
 		@category = Category.find(params[:id])
 	end
+	def require_creator
+    	access_denied unless logged_in? && (current_user == @category.user || current_user.admin?)
+  	end
 
 end

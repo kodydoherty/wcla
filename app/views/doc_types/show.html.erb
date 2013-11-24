@@ -1,7 +1,9 @@
 <% header = (link_to("Document", doc_types_path) + "&raquo; #{@doc_type.name}".html_safe)%>
 <%= render 'shared/title', title: header %>
   <div class='row'>
-    <%= link_to 'New Document', new_doc_path, class: 'btn btn-success btn-small' %>
+  	<% if logged_in? and current_user.admin?  %>
+   		 <%= link_to 'New Document', new_doc_path, class: 'btn btn-success btn-small' %>
+   	<% end %>
   </div>
 <br/>
 <% @docs.each do |doc| %>

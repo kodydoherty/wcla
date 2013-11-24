@@ -2,7 +2,7 @@
 
 
 <% @users.each do |user| %>
-	<div class='well'>
+	<div class='well span3'>
 			<p>Unit: <%= user.unit %></p>
 			<%= link_to "#{user.first_name.titleize} #{user.last_name.titleize}", user_path(user), class: 'lead'%>
 			<p class="inline"><%= link_to 'Edit', edit_user_path(user) %>
