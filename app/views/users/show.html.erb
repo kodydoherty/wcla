@@ -1,1 +1,4 @@
-<%= render 'shared/title', title: current_user.username %>
+<%= render 'shared/title', title: "#{current_user.first_name} #{current_user.last_name.titleize}" %>
+<p><strong>Username:</strong> <%= current_user.username %></p>
+<p><strong>Unit Number: </strong> <%= current_user.unit %></p>
+<p>Account Created At: <%= display_datetime(current_user.created_at) %></p>

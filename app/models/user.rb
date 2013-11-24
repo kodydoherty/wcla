@@ -2,9 +2,15 @@ class User < ActiveRecord::Base
 	has_many :posts
 	has_many :comments
 	has_many :docs
-	
+
 	has_secure_password validations: false
 
+	validates :first_name, 
+		presence: true,
+		uniqueness: true
+	validates :last_name, 
+		presence: true,
+		uniqueness: true
 	validates :username, 
 		presence: true,
 		uniqueness: true
