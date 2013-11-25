@@ -1,6 +1,6 @@
 
 <%= render 'shared/title', title: @doc.title %>
-<p><%= @doc.body.html_safe %></p>
+
 <p>
 	<span class="quiet">posted by </span><%= @doc.user.username %>
 	<small>at <%= display_datetime(@doc.created_at) %></small>

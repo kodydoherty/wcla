@@ -1,8 +1,7 @@
 
 <%= render 'shared/title', title: doc.title %>
 <p><%= doc.body.html_safe %></p>
-<iframe src="http://docs.google.com/gview?url=https://drive.google.com/file/d/0B2SM8jo-yZfrVF9COEd5Ni1Dalk/edit?usp=sharing&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe>
-
+<%= link_to "Download Now", asset_path('pdf/VA.pdf'), class: "btn btn-large btn-primary" %>
 <p>
 
 
