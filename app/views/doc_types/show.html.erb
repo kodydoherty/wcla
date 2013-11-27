@@ -1,12 +1,11 @@
 <% header = (link_to("Document", doc_types_path) + "&raquo; #{@doc_type.name}".html_safe)%>
 <%= render 'shared/title', title: header %>
-  <%= link_to "Download Now", asset_path('pdf/VA.pdf'), class: "btn btn-large btn-primary" %>
   <div class='row'>
   	<% if logged_in? and current_user.admin?  %>
-   		 <%= link_to 'New Document', new_doc_path, class: 'btn btn-success btn-small' %>
+   		 <%= link_to 'New Document', new_doc_type_doc_path(@doc_type, @doc), class: 'btn btn-success btn-small' %>
    	<% end %>
   </div>
 <br/>
 <% @docs.each do |doc| %>
-		<%= render 'docs/doc', doc: doc %>
+		<%= render 'docs/doc', doc: doc, doc_type: @doc_type %>
 <% end %>

@@ -1,13 +1,13 @@
 <div class="well">
 	<%= render 'shared/error', obj: @doc %>
-	<%= form_for @doc do |f| %>
+	<%= form_for [@doc_type, @doc] do |f| %>
 		<div class='control-group'>	
 			<%= f.label :title, "Title" %>
 			<%= f.text_field :title %>
 		</div>
 		<div class='control-group'>
-			<%= f.label :body, "Document" %>
-			<%= f.text_area :body, size: "20x6" %>
+			<%= f.label :url, "Document" %>
+			<%= f.text_field :url %>
 		</div>
 		<%= f.submit(@doc.new_record? ? "Create Doc" : "Update Doc", class: "btn btn-primary") %>
 	<% end %>

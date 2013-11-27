@@ -8,7 +8,7 @@ PostitTemplate::Application.routes.draw do
   get '/forsale', to: 'sessions#sale'
 
   resources :users
-  resources :posts do
+  resources :posts, except: [:index] do
   	resources :comments, only: [:create] do
 
   	end
@@ -16,7 +16,8 @@ PostitTemplate::Application.routes.draw do
 
   resources :categories
 
-  resources :docs
-  resources :doc_types
+  resources :doc_types do
+    resources :docs, except: [:show]
+  end
 
 end

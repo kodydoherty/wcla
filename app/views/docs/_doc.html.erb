@@ -1,10 +1,13 @@
 
-<%= render 'shared/title', title: doc.title %>
-<p><%= doc.body.html_safe %></p>
-<%= link_to "Download Now", asset_path('pdf/VA.pdf'), class: "btn btn-large btn-primary" %>
-<p>
+<div class='well'>
+	<h3 class='lead'><%= link_to doc.title, pdf_path(doc.url) %></h3>
 
-
-	<span class="quiet">posted by </span><%= doc.user.username %>
-	<small>at <%= display_datetime(doc.created_at) %></small>
-</p>
+	<p>
+		<span class="quiet">posted by </span><%= doc.user.username %>
+		<small>at <%= display_datetime(doc.created_at) %></small>
+		<% if logged_in? and current_user.admin? %>
+			<%= link_to "Edit", edit_doc_type_doc_path(doc_type, doc) %>
+			<%= link_to 'Destroy',  [doc_type, doc],  method: :delete, data: { confirm: 'Are you sure?' } %>
+		<% end %>
+	</p>
+</div>
