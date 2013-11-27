@@ -1,18 +1,17 @@
 class DocsController < ApplicationController
-  before_action :set_post, only: [:edit, :update]
-  before_action :require_user, only: [ :index]
+  before_action :set_type, only: [:new, :create]
+  before_action :require_user, only: [:index]
   before_action :require_admin, except: [:index] 
+  before_action :type_and_doc, only: [:destroy, :edit]
 
   def index
   	@docs = Doc.all.sort
   end
   def new 
-    @doc_type = DocType.find(params[:doc_type_id])
   	@doc = Doc.new
   end
 
   def create 
-    @doc_type = DocType.find(params[:doc_type_id])
   	@doc = @doc_type.docs.build(doc_params)
   	@doc.user = current_user
 
@@ -26,11 +25,10 @@ class DocsController < ApplicationController
   end
 
   def edit 
-    @doc_type = DocType.find(params[:doc_type_id])
-    @doc = @doc_type.docs.find(params[:id])
   end
 
   def update
+    @doc = Doc.find(params[:id])
   	if @doc.update(doc_params)
   		flash[:notice] = "Post created successfully"
   		redirect_to doc_types_path
@@ -41,8 +39,6 @@ class DocsController < ApplicationController
   end
 
   def destroy
-    @doc_type = DocType.find(params[:doc_type_id])
-    @doc = @doc_type.docs.find(params[:id])
     @doc.destroy
     flash[:notice] = "The document was deleted succesfully."
     redirect_to doc_types_path
@@ -50,8 +46,13 @@ class DocsController < ApplicationController
 
   private
 
-  def set_post
-    @doc = Doc.find(params[:id])
+  def type_and_doc
+    @doc_type = DocType.find(params[:doc_type_id])
+    @doc = @doc_type.docs.find(params[:id])
+  end
+
+  def set_type
+    @doc_type = DocType.find(params[:doc_type_id])
   end
   def require_creator
     access_denied unless logged_in? && (current_user == @doc.user || current_user.admin?)
