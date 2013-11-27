@@ -5,7 +5,8 @@ PostitTemplate::Application.routes.draw do
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
   get '/document', to: 'sessions#doc'
-  get '/forsale', to: 'sessions#sale'
+  get '/about', to: 'sessions#about'
+
 
   resources :users
   resources :posts, except: [:index] do

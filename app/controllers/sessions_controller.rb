@@ -1,11 +1,9 @@
 class SessionsController < ApplicationController
-before_action :require_user, only: [:doc, :sale]
 	def home; end
 
 	def new; end
 
-	def doc; end
-	def sale; end
+	def about; end
 
 	def create
 		user = User.where(username: params[:username]).first
